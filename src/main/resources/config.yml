@@ -1,0 +1,8 @@
+options:
+  prefix: "&c[Arcadia RP]"
+
+messages:
+  auto:
+    - "&aToute intrusion dans le bâtiment staff est interdite et passible d'un ban d'1h voire plus si récidive"
+    - "&aPour signaler un joueur, veuillez faire /report."
+    - "&aMerci de mettre le pack de textures Amberstone pour une meilleure immersion"

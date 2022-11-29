@@ -1,0 +1,50 @@
+name: ArcadiaPluginRP
+version: '${version}'
+main: fr.silenthill99.ArcadiaPluginRP.Main
+api-version: 1.16
+authors: [ silenthill99 ]
+commands:
+  disconnect:
+    aliases: deco
+    permission: Arcadia.staff
+    permission-message: §4Vous n'avez pas accès à cette commande !
+  connect:
+    aliases: co
+    permission: Arcadia.staff
+    permission-message: §4Vous n'avez pas accès à cette commande !
+  tchatlist:
+    aliases: tchat
+    description: Commande pour voir la liste de tous les tchat
+  menu:
+    permission: Arcadia.moderation
+    permission-message: §4[Modération] Vous n'avez pas la permission de faire ceci !
+  modelisateur:
+    permission: Arcadia.modelisateur
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  builder:
+    permission: Arcadia.builder
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  moderateur:
+    aliases: modo
+    permission: Arcadia.moderation
+    permission-message: §a[Fudsio RP] §cVous n'avez pas accès à la commande
+  direction:
+    permission: Arcadia.direction
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  carte:
+    permission: Arcadia.staff
+    permission-message: §4Vous devez être du staff pour faire cette commande !
+  recherche:
+    permission: Arcadia.fdl
+    permission-message: §4Cette commande est réservée aux forces de l'ordre !
+  head:
+  reseaux:
+    aliases: rs
+  staff:
+    aliases: stafftchat
+    permission: Arcadia.staff
+    permission-message: §4Vous devez être du staff pour faire cette commande !
+  options:
+    permission: Arcadia.direction
+    permission-message: §c[Arcadia RP] Seule la direction peut faire cette commande !
+  ltest:

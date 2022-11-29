@@ -1,0 +1,63 @@
+name: ArcadiaPluginRP
+version: '${version}'
+main: fr.silenthill99.ArcadiaPluginRP.Main
+api-version: 1.16
+authors: [ silenthill99 ]
+commands:
+  disconnect:
+    aliases: deco
+    permission: Arcadia.staff
+    permission-message: §4Vous n'avez pas accès à cette commande !
+  connect:
+    aliases: co
+    permission: Arcadia.staff
+    permission-message: §4Vous n'avez pas accès à cette commande !
+  tchatlist:
+    aliases: tchat
+    description: Commande pour voir la liste de tous les tchat
+  menu:
+    permission: Arcadia.moderation
+    permission-message: §4[Modération] Vous n'avez pas la permission de faire ceci !
+  moderateur:
+    aliases: modo
+    permission: Arcadia.moderation
+    permission-message: §a[Fudsio RP] §cVous n'avez pas accès à la commande
+  direction:
+    permission: Arcadia.direction
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  carte:
+    permission: Arcadia.staff
+    permission-message: §4Vous devez être du staff pour faire cette commande !
+  recherche:
+    permission: Arcadia.fdl
+    permission-message: §4Cette commande est réservée aux forces de l'ordre !
+  reseaux:
+    aliases: rs
+  staff:
+    aliases: stafftchat
+    permission: Arcadia.staff
+    permission-message: §4Vous devez être du staff pour faire cette commande !
+  options:
+    permission: Arcadia.direction
+    permission-message: §c[Arcadia RP] Seule la direction peut faire cette commande !
+  randomtp:
+    aliases: rtp
+    permission: group.moderateur
+    permission-message: §4Vous devez appartenir au service de modération pour faire cette commande !
+  administrateur:
+    aliases: admin
+    permission: Arcadia.administrateur
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  ltest:
+  developpeur:
+    aliases: dev
+    permission: Arcadia.developpeur
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  secretaire:
+    aliases: srt
+    permission: Arcadia.secretaire
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
+  responsable:
+    aliases: respequipe
+    permission: Arcadia.responsable
+    permission-message: §a[Arcadia RP] §cVous n'avez pas accès à la commande
