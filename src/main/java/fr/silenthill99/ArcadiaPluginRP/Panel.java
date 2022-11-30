@@ -6,7 +6,6 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import org.omg.CORBA.TypeCodePackage.BadKind;
 
 public class Panel {
 
@@ -48,13 +47,13 @@ public class Panel {
             ItemBuilder Bannissements_permanents = new ItemBuilder(Material.RED_DYE).setName("§cBannissement permanent");
 
             Inventory bannissements = Bukkit.createInventory(new AdminOptionHolder(pl), 54, "§4Bannir " + pl.getName());
-            bannissements.setItem(1, Insultes_staff.toItemStack());
-            bannissements.setItem(2, Freekill_involontaire.toItemStack());
-            bannissements.setItem(3, Freekill_volontaire.toItemStack());
-            bannissements.setItem(4, Freekill_Aveu.toItemStack());
-            bannissements.setItem(5, Freekill_Stuff_Rendu.toItemStack());
-            bannissements.setItem(6, Deco_inter.toItemStack());
-            bannissements.setItem(7, Mensonge_staff.toItemStack());
+            // bannissements.setItem(1, Insultes_staff.toItemStack());
+            // bannissements.setItem(2, Freekill_involontaire.toItemStack());
+            // bannissements.setItem(3, Freekill_volontaire.toItemStack());
+            // bannissements.setItem(4, Freekill_Aveu.toItemStack());
+            // bannissements.setItem(5, Freekill_Stuff_Rendu.toItemStack());
+            // bannissements.setItem(6, Deco_inter.toItemStack());
+            // bannissements.setItem(7, Mensonge_staff.toItemStack());
             bannissements.setItem(9, Refus_d_inter.toItemStack());
             bannissements.setItem(10, Faux_ticket_massif.toItemStack());
             bannissements.setItem(11, Spam_massif.toItemStack());

@@ -3,6 +3,7 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.AvertirHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -47,6 +48,14 @@ public class AvertirInventory extends AbstractInventory<AvertirHolder>
         {
             case PAPER:
             {
+                switch (warns)
+                {
+                    default:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " " + warns.getName());
+                        break;
+                    }
+                }
             }
             default:
             {
