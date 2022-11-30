@@ -60,8 +60,8 @@ public class Panel {
             // bannissements.setItem(12, Intrusion_batiment_staff.toItemStack());
             // bannissements.setItem(13, Cheat.toItemStack());
             // bannissements.setItem(14, UseBug.toItemStack());
-            bannissements.setItem(15, Anti_AFK.toItemStack());
-            bannissements.setItem(16, Tentative_fk_modo.toItemStack());
+            // bannissements.setItem(15, Anti_AFK.toItemStack());
+            //bannissements.setItem(16, Tentative_fk_modo.toItemStack());
             bannissements.setItem(27, NoRP_en_masse.toItemStack());
             bannissements.setItem(28, Freekill_en_masse.toItemStack());
             bannissements.setItem(29, Menace_DDOS.toItemStack());

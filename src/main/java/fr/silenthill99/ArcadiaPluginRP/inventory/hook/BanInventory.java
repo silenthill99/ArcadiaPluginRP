@@ -29,6 +29,12 @@ public class BanInventory extends AbstractInventory<BanHolder>
             holder.ban_temp.put(ban_temp.getSlot(), ban_temp);
             inv.setItem(ban_temp.getSlot(), new ItemBuilder(Material.PAPER).setName(ChatColor.GOLD + ban_temp.getName()).setLore(ban_temp.getLore()).toItemStack());
         }
+        int slot = 27;
+        for (Ban ban : Ban.values())
+        {
+            holder.ban.put(slot, ban);
+            inv.setItem(slot++, new ItemBuilder(Material.PAPER).setName(ChatColor.RED + ban.getName()).toItemStack());
+        }
         player.openInventory(inv);
     }
 
@@ -39,7 +45,6 @@ public class BanInventory extends AbstractInventory<BanHolder>
         BanTemp ban_temp = holder.ban_temp.get(event.getSlot());
         Ban ban = holder.ban.get(event.getSlot());
 
-        int i = 0;
     }
 
     public enum BanTemp
@@ -56,7 +61,9 @@ public class BanInventory extends AbstractInventory<BanHolder>
         SPAM_MASSIF(11, "Spam massif", "10m", "Durée : 10 minutes"),
         INTRUSION_BATIMENT_STAFF(12, "Intrusion bâtiment staff", "1h", "Durée : 1h"),
         CHEAT(13, "Cheat", "3mo", "Durée : 3 mois"),
-        USEBUG(14, "UseBug", "3d", "Durée : 3 jours")
+        USEBUG(14, "UseBug", "3d", "Durée : 3 jours"),
+        ANTI_AFK(15, "Anti-AFK", "2d", "Durée : 2 jours"),
+        TENTATIVE_FK_MODO(16, "Tentative FK modo", "2d", "Durée : 2 jours")
         ;
         private final int slot;
         private final String name;
@@ -91,7 +98,19 @@ public class BanInventory extends AbstractInventory<BanHolder>
     }
 
     public enum Ban
-    {
+    {   NORP("NoRP en masse"),
+
         ;
+        private final String name;
+
+        Ban(String name)
+        {
+            this.name = name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
     }
 }
