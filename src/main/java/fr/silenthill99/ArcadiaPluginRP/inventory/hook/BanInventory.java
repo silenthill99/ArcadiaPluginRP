@@ -24,18 +24,10 @@ public class BanInventory extends AbstractInventory<BanHolder>
         OfflinePlayer target = (OfflinePlayer) args[0];
         BanHolder holder = new BanHolder(target);
         Inventory inv = createInventory(holder, 54, ChatColor.DARK_RED + "Bannir " + target.getName());
-        int slot = 1;
         for (BanTemp ban_temp : BanTemp.values())
         {
-            if (slot != 8)
-            {
-                holder.ban_temp.put(slot, ban_temp);
-                inv.setItem(slot++, new ItemBuilder(Material.PAPER).setName(ChatColor.GOLD + ban_temp.getName()).setLore(ban_temp.getLore()).toItemStack());
-            }
-            else
-            {
-                slot++;
-            }
+            holder.ban_temp.put(ban_temp.getSlot(), ban_temp);
+            inv.setItem(ban_temp.getSlot(), new ItemBuilder(Material.PAPER).setName(ChatColor.GOLD + ban_temp.getName()).setLore(ban_temp.getLore()).toItemStack());
         }
         player.openInventory(inv);
     }
@@ -46,27 +38,41 @@ public class BanInventory extends AbstractInventory<BanHolder>
         OfflinePlayer target = holder.getTarget();
         BanTemp ban_temp = holder.ban_temp.get(event.getSlot());
         Ban ban = holder.ban.get(event.getSlot());
+
+        int i = 0;
     }
 
     public enum BanTemp
     {
-        INSULTES_STAFF("Insultes staff", "3d", "Durée : 3 jours"),
-        FK_INVO("Freekill involontaire", "24h", "Durée : 24 heures"),
-        FREEKILL("Freekill volontaire", "15d", "Durée : 15 jours"),
-        FK_AVEU("Freekill - Aveu", "10d", "Durée : 10 jours"),
-        FK_STUFF_RENDU("Freekill - stuff rendu", "7d", "Durée : 1 semaine"),
-        DECO_INTER("Déco inter", "24h", "Durée : 24 heures"),
-        MENSONGE_STAFF("Mensonge Staff", "2d", "Durée : 2 jours"),
-        REFUS_DINTER("Refus d'inter", "3d", "Durée : 3 jours")
+        INSULTES_STAFF(1, "Insultes staff", "3d", "Durée : 3 jours"),
+        FK_INVO(2, "Freekill involontaire", "24h", "Durée : 24 heures"),
+        FREEKILL(3, "Freekill volontaire", "15d", "Durée : 15 jours"),
+        FK_AVEU(4, "Freekill - Aveu", "10d", "Durée : 10 jours"),
+        FK_STUFF_RENDU(5, "Freekill - stuff rendu", "7d", "Durée : 1 semaine"),
+        DECO_INTER(6, "Déco inter", "24h", "Durée : 24 heures"),
+        MENSONGE_STAFF(7, "Mensonge Staff", "2d", "Durée : 2 jours"),
+        REFUS_DINTER(9,"Refus d'inter", "3d", "Durée : 3 jours"),
+        FAUX_TICKET_MASSIF(10, "Faux ticket massif", "5d", "Durée : 5 jours"),
+        SPAM_MASSIF(11, "Spam massif", "10m", "Durée : 10 minutes"),
+        INTRUSION_BATIMENT_STAFF(12, "Intrusion bâtiment staff", "1h", "Durée : 1h"),
+        CHEAT(13, "Cheat", "3mo", "Durée : 3 mois"),
+        USEBUG(14, "UseBug", "3d", "Durée : 3 jours")
         ;
+        private final int slot;
         private final String name;
         private final String duration;
         private final String[] lore;
-        BanTemp(String name, String duration, String... lore)
+        BanTemp(int slot, String name, String duration, String... lore)
         {
+            this.slot = slot;
             this.name = name;
             this.duration = duration;
             this.lore = lore;
+        }
+
+        public int getSlot()
+        {
+            return this.slot;
         }
         public String getName()
         {

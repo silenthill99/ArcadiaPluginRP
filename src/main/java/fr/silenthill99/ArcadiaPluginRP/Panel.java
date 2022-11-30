@@ -54,12 +54,12 @@ public class Panel {
             // bannissements.setItem(5, Freekill_Stuff_Rendu.toItemStack());
             // bannissements.setItem(6, Deco_inter.toItemStack());
             // bannissements.setItem(7, Mensonge_staff.toItemStack());
-            bannissements.setItem(9, Refus_d_inter.toItemStack());
-            bannissements.setItem(10, Faux_ticket_massif.toItemStack());
-            bannissements.setItem(11, Spam_massif.toItemStack());
-            bannissements.setItem(12, Intrusion_batiment_staff.toItemStack());
-            bannissements.setItem(13, Cheat.toItemStack());
-            bannissements.setItem(14, UseBug.toItemStack());
+            // bannissements.setItem(9, Refus_d_inter.toItemStack());
+            // bannissements.setItem(10, Faux_ticket_massif.toItemStack());
+            // bannissements.setItem(11, Spam_massif.toItemStack());
+            // bannissements.setItem(12, Intrusion_batiment_staff.toItemStack());
+            // bannissements.setItem(13, Cheat.toItemStack());
+            // bannissements.setItem(14, UseBug.toItemStack());
             bannissements.setItem(15, Anti_AFK.toItemStack());
             bannissements.setItem(16, Tentative_fk_modo.toItemStack());
             bannissements.setItem(27, NoRP_en_masse.toItemStack());
