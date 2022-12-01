@@ -11,6 +11,7 @@ public enum InventoryType
     ADMIN_SYSTEM_JOB(new AdminJobInventory()),
     AVERTIR(new AvertirInventory()),
     BAN(new BanInventory()),
+    BAN_ADMIN(new BanAdminInventory()),
     DIRECTION(new DirectionInventory()),
     EXPULSER(new ExpulserInventory()),
     PLAYER_OPTIONS(new PlayerOptionInventory()),
