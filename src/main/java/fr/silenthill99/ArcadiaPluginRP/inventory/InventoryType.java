@@ -12,6 +12,7 @@ public enum InventoryType
     AVERTIR(new AvertirInventory()),
     BAN(new BanInventory()),
     DIRECTION(new DirectionInventory()),
+    EXPULSER(new ExpulserInventory()),
     PLAYER_OPTIONS(new PlayerOptionInventory()),
     PLAYER_ADMIN_MENU(new PlayerAdminInventory()),
     PLAYER_SANCTION_INVENTORY(new PlayerSanctionTypeInventory()),

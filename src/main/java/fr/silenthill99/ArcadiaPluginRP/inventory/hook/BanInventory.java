@@ -3,6 +3,7 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.BanHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -23,6 +24,10 @@ public class BanInventory extends AbstractInventory<BanHolder>
     {
         OfflinePlayer target = (OfflinePlayer) args[0];
         BanHolder holder = new BanHolder(target);
+
+        ItemStack Bannissements_temporaires = new ItemBuilder(Material.ORANGE_DYE).setName(ChatColor.GOLD + "Bannissement temporaire").toItemStack();
+        ItemStack Bannissements_permanents = new ItemBuilder(Material.RED_DYE).setName(ChatColor.RED + "Bannissement permanent").toItemStack();
+
         Inventory inv = createInventory(holder, 54, ChatColor.DARK_RED + "Bannir " + target.getName());
         for (BanTemp ban_temp : BanTemp.values())
         {
@@ -35,6 +40,9 @@ public class BanInventory extends AbstractInventory<BanHolder>
             holder.ban.put(slot, ban);
             inv.setItem(slot++, new ItemBuilder(Material.PAPER).setName(ChatColor.RED + ban.getName()).toItemStack());
         }
+        inv.setItem(35, RETOUR);
+        inv.setItem(44, Bannissements_temporaires);
+        inv.setItem(53, Bannissements_permanents);
         player.openInventory(inv);
     }
 
@@ -44,7 +52,25 @@ public class BanInventory extends AbstractInventory<BanHolder>
         OfflinePlayer target = holder.getTarget();
         BanTemp ban_temp = holder.ban_temp.get(event.getSlot());
         Ban ban = holder.ban.get(event.getSlot());
-
+        switch (current.getType())
+        {
+            case PAPER:
+            {
+                if (holder.ban_temp.containsValue(ban_temp))
+                {
+                    Bukkit.dispatchCommand(player, "tempipban " + target.getName() + " " + ban_temp.getDuration() + " " + ban_temp.getName());
+                }
+                else
+                {
+                    Bukkit.dispatchCommand(player, "ipban " + target.getName() + " " + ban.getName());
+                }
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
     }
 
     public enum BanTemp
@@ -63,7 +89,12 @@ public class BanInventory extends AbstractInventory<BanHolder>
         CHEAT(13, "Cheat", "3mo", "Durée : 3 mois"),
         USEBUG(14, "UseBug", "3d", "Durée : 3 jours"),
         ANTI_AFK(15, "Anti-AFK", "2d", "Durée : 2 jours"),
-        TENTATIVE_FK_MODO(16, "Tentative FK modo", "2d", "Durée : 2 jours")
+        TENTATIVE_FK_MODO(16, "Tentative FK modo", "2d", "Durée : 2 jours"),
+        NORP_RECIDIVE_600_MIN(45, "NoRP [Récidive | 600 min]", "10h"),
+        NORP_RECIDIVE_120_MIN(46, "NoRP [Récidive | 120 min]", "2h"),
+        NORP_RECIDIVE_60_MIN(47, "NoRP [Récidive | 60 min]", "1h"),
+        PROPOS_OBSCENES(48, "Propos obscènes (Grave)", "8h", "Durée : 8 heures"),
+        ACTES_OBSCENES(49, "Actes obscènes (Grave)", "8h", "Durée : 8 heures")
         ;
         private final int slot;
         private final String name;
@@ -98,8 +129,15 @@ public class BanInventory extends AbstractInventory<BanHolder>
     }
 
     public enum Ban
-    {   NORP("NoRP en masse"),
-
+    {
+        NORP("NoRP en masse"),
+        FK_MASSE("Freekill en masse"),
+        DDOS("Menace DDoS"),
+        TROLL("Troll"),
+        DUPLICATION("Suspicion de duplication"),
+        COUP_DETAT("Coup d'état serveur"),
+        DENIGREMENT_DE_SERVEUR("Dénigrement de serveur"),
+        INSULTE_SERVEUR("Insulte serveur")
         ;
         private final String name;
 
