@@ -12,19 +12,6 @@ public class Panel {
 
     public static void panel_modo(OfflinePlayer pl, Player sn, Type type){
         sn.closeInventory();
-
-        if (type == Type.BAN_ADMIN) {
-
-            ItemBuilder Contournement_de_sanctions = new ItemBuilder(Material.PAPER).setName("§cContournement de sanctions");
-            ItemBuilder Usurpation_d_identite = new ItemBuilder(Material.PAPER).setName("§cUsurpation d'identité");
-            ItemBuilder Retour = new ItemBuilder(Material.NETHER_STAR).setName("§cRetour");
-
-            Inventory ban_admin = Bukkit.createInventory(new AdminOptionHolder(pl), 9, "§4Bannir ");
-            ban_admin.setItem(1, Contournement_de_sanctions.toItemStack());
-            ban_admin.setItem(2, Usurpation_d_identite.toItemStack());
-            ban_admin.setItem(8, Retour.toItemStack());
-            sn.openInventory(ban_admin);
-        }
         if (type == Type.ERREURS_STAFF) {
 
             ItemBuilder Fly_sans_vanish = new ItemBuilder(Material.PAPER).setName("§aFly sans vanish");
