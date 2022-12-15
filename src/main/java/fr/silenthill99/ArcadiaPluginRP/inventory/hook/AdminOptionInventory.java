@@ -2,7 +2,10 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.AdminOptionHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -39,5 +42,25 @@ public class AdminOptionInventory extends AbstractInventory<AdminOptionHolder>
     @Override
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, AdminOptionHolder holder) {
         OfflinePlayer target = holder.getTarget();
+        switch (current.getType())
+        {
+            case BOOK:
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "history " + target.getName());
+                break;
+            case BLAZE_POWDER:
+                player.closeInventory();
+                target.getPlayer().getInventory().clear();
+                break;
+            case ENDER_PEARL:
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "check " + target.getName());
+                break;
+            case NETHER_STAR:
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            default:
+                break;
+        }
     }
 }

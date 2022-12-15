@@ -2,6 +2,8 @@ package fr.silenthill99.ArcadiaPluginRP.commands;
 
 import fr.silenthill99.ArcadiaPluginRP.Main;
 import fr.silenthill99.ArcadiaPluginRP.Panel;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,7 +24,7 @@ public class Carte implements CommandExecutor {
             return false;
         }
 
-        Panel.teleportation(player);
+        InventoryManager.openInventory(player, InventoryType.TELEPORTATION);
 
         return false;
     }

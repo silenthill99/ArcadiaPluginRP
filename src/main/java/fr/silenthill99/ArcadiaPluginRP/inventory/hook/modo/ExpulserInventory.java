@@ -1,4 +1,4 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
+package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;

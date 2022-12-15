@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
@@ -36,6 +37,7 @@ public abstract class AbstractInventory<T extends SilenthillHolder>
 
     public void onJoin(PlayerJoinEvent event) {}
     public void onQuit(PlayerQuitEvent event) {}
+    public void onInteractEntity(PlayerInteractAtEntityEvent event) {}
     public abstract void openInventory(Player player, Object... args);
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, T holder) {}
     public void closeInventory(Player player, InventoryCloseEvent event) {}

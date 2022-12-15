@@ -92,37 +92,6 @@ public class Events implements Listener {
     }
 
     @EventHandler
-    public void onRightClickEntity(PlayerInteractEntityEvent event){
-        Player player = event.getPlayer();
-        Entity entity = event.getRightClicked();
-        if (entity.getName().equalsIgnoreCase("MacDo")){
-
-            ItemBuilder steak = new ItemBuilder(Material.COOKED_BEEF).setLore("Prix : 15€");
-            ItemBuilder tarte = new ItemBuilder(Material.PUMPKIN_PIE).setLore("Prix : 20€");
-
-            Inventory menu = Bukkit.createInventory(null, 9, "Acheter à manger");
-            menu.setItem(0, steak.toItemStack());
-            menu.setItem(1, tarte.toItemStack());
-            player.openInventory(menu);
-            return;
-        }
-
-        if (player.hasPermission("group.policier") && !player.isOp()) {
-            if (entity instanceof Player) {
-                Player target = (Player) entity;
-                if (!target.getName().equalsIgnoreCase("Emrolehero") && !target.getName().equalsIgnoreCase("dealer") && !target.getName().equalsIgnoreCase("Secrétaire") && !target.getName().equalsIgnoreCase("pôle emploi")) {
-
-                    ItemBuilder Fouiller = new ItemBuilder(Material.BLAZE_ROD).setName("§aFouiller");
-
-                    //Inventory policier = Bukkit.createInventory(new AdminOptionHolder(target), 27, "Menu policier");
-                    //policier.setItem(0, Fouiller.toItemStack());
-                    //player.openInventory(policier);
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void onClick(InventoryClickEvent event) {
 
         Player player = (Player) event.getWhoClicked();
@@ -154,9 +123,6 @@ public class Events implements Listener {
          */
         if (event.getView().getTitle().startsWith("Panel de ")) {
             event.setCancelled(true);
-
-            AdminOptionHolder holder = (AdminOptionHolder) inv.getHolder();
-            OfflinePlayer target = holder.getPlayer();
 
             switch (current.getType()) {
                 case BLAZE_POWDER:
@@ -291,33 +257,7 @@ public class Events implements Listener {
                     break;
             }
         }
-        if (event.getView().getTitle().startsWith("§4Option Admin | ")) {
-            AdminOptionHolder holder = (AdminOptionHolder) event.getClickedInventory().getHolder();
-            OfflinePlayer target = holder.getPlayer();
-            event.setCancelled(true);
-            switch (current.getType()) {
-                case BOOK:
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "history " + target.getName());
-                    break;
-                case BLAZE_POWDER:
-                    player.closeInventory();
-                    target.getPlayer().getInventory().clear();
-                    break;
-                case ENDER_PEARL:
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "check " + target.getName());
-                    break;
-                case NETHER_STAR:
-                    Panel.panel_modo(target, player, "menu");
-                    break;
-                default:
-                    break;
-            }
-        }
         if (event.getView().getTitle().startsWith("Set team ")) {
-            AdminOptionHolder holder = (AdminOptionHolder) event.getClickedInventory().getHolder();
-            OfflinePlayer target = holder.getPlayer();
             event.setCancelled(true);
             switch (current.getItemMeta().getDisplayName()) {
                 case "§aActualiser la liste des jobs":
@@ -368,138 +308,6 @@ public class Events implements Listener {
                 case GREEN_DYE:
                     player.closeInventory();
                     Bukkit.dispatchCommand(player, "warn " + target.getName() + " Blacklist staff");
-                    break;
-                default:
-                    break;
-            }
-        }
-        if (event.getView().getTitle().startsWith("§2Avertir ")) {
-            AdminOptionHolder holder = (AdminOptionHolder) event.getClickedInventory().getHolder();
-            OfflinePlayer target = holder.getPlayer();
-            event.setCancelled(true);
-            switch (current.getItemMeta().getDisplayName()) {
-                case "§2NoFearRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoFearRP");
-                    break;
-                case "§2NoPainRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoPainRP");
-                    break;
-                case "§2New Life Rules":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " NLR");
-                    break;
-                case "§2Serious RP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Serious RP Non respecté");
-                    break;
-                case "§2Conduite NoRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Conduite non RolePlay");
-                    break;
-                case "§2Métagaming":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Métagaming");
-                    break;
-                case "§2Hrp en RP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Hrp en RP");
-                    break;
-                case "§2Hrp en RP (vocal)":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Hrp en RP vocal");
-                    break;
-                case "§2NoRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoRP");
-                    break;
-                case "§2Braquage rue":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Braquage rue");
-                    break;
-                case "§2Braquage solo":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Braquage solo");
-                    break;
-                case "§2Occupation quartier ou bâtiment":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Occupation d'un quartier ou bâtiment");
-                    break;
-                case "§2Objet illégal en métier légal":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Objet illégal en métier légal");
-                    break;
-                case "§2Déco scène RP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Déco en scène RP");
-                    break;
-                case "§2FreePunch":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " FreePunch");
-                    break;
-                case "§2TP scène RP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Tp en scène RP");
-                    break;
-                case "§2Déco combat":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Déco en combat");
-                    break;
-                case "§2Faux ticket":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Faux ticket");
-                    break;
-                case "§2Insulte HRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Insultes HRP");
-                    break;
-                case "§2FreeShot":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " FreeShot");
-                    break;
-                case "§2FreeJail":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " FreeJail");
-                    break;
-                case "§2FreeTaze":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " FreeTaze");
-                    break;
-                case "§2Freekill":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Freekill");
-                    break;
-                case "§2Bunny hop":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Bunny hop");
-                    break;
-                case "§2Braquage banque sans FDO":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Braquage banque sans FDO");
-                    break;
-                case "§2Véhicule bâtiment":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + "Véhicule bâtiment");
-                    break;
-                case "§2Arme en métier légal":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Armes en métier légal");
-                    break;
-                case "§2Provocation":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Provocation HRP");
-                    break;
-                case "§2Skin NoRP":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " Skin NoRP");
-                    break;
-                case "§2No FairPlay":
-                    player.closeInventory();
-                    Bukkit.dispatchCommand(player, "warn " + target.getName() + " No FairPlay");
-                    break;
-                case "§cRetour":
-                    Panel.panel_modo(target, player, "menu");
                     break;
                 default:
                     break;
@@ -818,60 +626,6 @@ public class Events implements Listener {
                     break;
             }
         }
-        if (event.getView().getTitle().startsWith("Acheter à manger")) {
-            event.setCancelled(true);
-            switch (current.getType()) {
-                case COOKED_BEEF:
-                    if (Main.getInstance().economy.has(player, 15)){
-                        player.getInventory().addItem(new ItemStack(Material.COOKED_BEEF));
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "eco take " + player.getName() + " 15");
-                    } else {
-                        player.sendMessage("§cVous n'avez pas assez d'argent !");
-                    }
-                    break;
-                case PUMPKIN_PIE:
-                    if (Main.getInstance().economy.has(player, 20)) {
-                        player.getInventory().addItem(new ItemStack(Material.PUMPKIN_PIE));
-                        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "eco take " + player.getName() + " 20");
-                    } else {
-                        player.sendMessage("§cVous n'avez pas assez d'argent !");
-                    }
-                    break;
-                default:
-                    break;
-            }
-            return;
-        }
-        if (event.getView().getTitle().startsWith("Se téléporter")) {
-            event.setCancelled(true);
-            switch (current.getItemMeta().getDisplayName()) {
-                case "Aéroport":
-                    Location aeroport = new Location(player.getWorld(), 2114, 4.5, -115, -90f, 0f);
-                    player.teleport(aeroport);
-                    break;
-                case "Bâtiment staff":
-                    Location MDS = new Location(player.getWorld(), -59, 4.5, 522, 90f, 0f);
-                    player.teleport(MDS);
-                    break;
-                case "Commissariat ville n°2":
-                    Location Commissariat_2 = new Location(player.getWorld(), 444.59, 4, -220.474, -179.6f, -1.4f);
-                    player.teleport(Commissariat_2);
-                    break;
-                case "Prison":
-                    Location prison = new Location(player.getWorld(), 532.632, 4, 909.268, -4.7f, -11.7f);
-                    player.teleport(prison);
-                    break;
-                case "Tribunal":
-                    Location tribunal = new Location(player.getWorld(), 419.091, 4, 90.694, 179.9f, -16.7f);
-                    player.teleport(tribunal);
-                    break;
-                case "Mairie":
-                    Bukkit.dispatchCommand(player, "spawn");
-                    break;
-                default:
-                    break;
-            }
-        }
         if (event.getView().getTitle().startsWith("Réseaux sociaux")) {
             event.setCancelled(true);
             switch(current.getItemMeta().getDisplayName()) {
@@ -929,23 +683,6 @@ public class Events implements Listener {
                     break;
             }
         }
-        if (event.getView().getTitle().startsWith("Menu policier")) {
-            AdminOptionHolder holder = (AdminOptionHolder) event.getClickedInventory().getHolder();
-            Player target = (Player) holder.getPlayer();
-            event.setCancelled(true);
-            switch (current.getType()) {
-                case BLAZE_ROD:
-                    Inventory inventaire = Bukkit.createInventory(target, 36, "Fouiller " + target.getName());
-                    for (int slot = 0; slot <= 35; slot++) {
-                        if (!target.getInventory().getItem(slot).equals(Material.AIR)) {
-                            inventaire.setItem(slot, target.getInventory().getItem(slot));
-                        }
-                    }
-                    player.openInventory(inventaire);
-                    break;
-                default:
-                    break;
-            }
         }
     }
 }

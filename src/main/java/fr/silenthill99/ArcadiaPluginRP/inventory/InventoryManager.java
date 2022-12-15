@@ -6,6 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.InventoryHolder;
@@ -23,16 +24,14 @@ public class InventoryManager implements Listener
         InventoryType.getValues().forEach((inv) -> inv.getInv().onQuit(e));
     }
 
-    /*
     @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractEntityEvent event)
+    public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event)
     {
         for (InventoryType inv : InventoryType.getValues())
         {
-            inv.getInv().onPlayerInteractEntity(event);
+            inv.getInv().onInteractEntity(event);
         }
     }
-     */
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     @EventHandler
