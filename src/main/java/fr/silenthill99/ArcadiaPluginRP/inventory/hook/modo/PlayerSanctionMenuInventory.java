@@ -4,7 +4,7 @@ import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
-import fr.silenthill99.ArcadiaPluginRP.inventory.holder.PlayerSanctionMenuHolder;
+import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.PlayerSanctionMenuHolder;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;

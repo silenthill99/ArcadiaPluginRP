@@ -10,6 +10,7 @@ public enum InventoryType
 {
     ADMIN_OPTION(new AdminOptionInventory()),
     ADMIN_SYSTEM_JOB(new AdminJobInventory()),
+    ATM(new DistributeurInventory()),
     AVERTIR(new AvertirInventory()),
     BAN(new BanInventory()),
     BAN_ADMIN(new BanAdminInventory()),

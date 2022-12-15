@@ -2,7 +2,7 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
-import fr.silenthill99.ArcadiaPluginRP.inventory.holder.ExpulserHolder;
+import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.ExpulserHolder;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;

@@ -2,8 +2,7 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
-import fr.silenthill99.ArcadiaPluginRP.inventory.holder.PlayerSanctionTypeHolder;
-import org.bukkit.Bukkit;
+import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.PlayerSanctionTypeHolder;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;

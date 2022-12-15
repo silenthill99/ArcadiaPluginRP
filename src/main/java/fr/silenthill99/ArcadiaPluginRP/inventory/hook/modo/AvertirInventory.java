@@ -4,7 +4,7 @@ import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
-import fr.silenthill99.ArcadiaPluginRP.inventory.holder.AvertirHolder;
+import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.AvertirHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,8 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-
-import java.util.Currency;
 
 public class AvertirInventory extends AbstractInventory<AvertirHolder>
 {
@@ -49,21 +47,32 @@ public class AvertirInventory extends AbstractInventory<AvertirHolder>
         switch (current.getType()) {
             case PAPER:
                 player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " " + warns.getName());
+                switch(warns)
+                {
+                    case NO_FEAR:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoFearRP");
+                        break;
+                    }
+                    case NLR:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " NLR");
+                        break;
+                    }
+                    case SERIOUS_RP:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " Serious RP Non respecté");
+                        break;
+                    }
+                    default:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " " + warns.getName());
+                        break;
+                    }
+                }
                 break;
             /*
-            case "§2NoFearRP":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoFearRP");
-                break;
-            case "§2NoPainRP":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " NoPainRP");
-                break;
-            case "§2New Life Rules":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " NLR");
-                break;
+
             case "§2Serious RP":
                 player.closeInventory();
                 Bukkit.dispatchCommand(player, "warn " + target.getName() + " Serious RP Non respecté");

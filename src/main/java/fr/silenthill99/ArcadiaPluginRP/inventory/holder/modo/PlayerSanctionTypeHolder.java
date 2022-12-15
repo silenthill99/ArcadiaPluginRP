@@ -1,13 +1,13 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.holder;
+package fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.inventory.SilenthillHolder;
 import org.bukkit.OfflinePlayer;
 
-public class PlayerOptionHolder extends SilenthillHolder
+public class PlayerSanctionTypeHolder extends SilenthillHolder
 {
     private final OfflinePlayer target;
 
-    public PlayerOptionHolder(OfflinePlayer target)
+    public PlayerSanctionTypeHolder(OfflinePlayer target)
     {
         this.target = target;
     }

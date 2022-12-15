@@ -1,4 +1,4 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.holder;
+package fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.inventory.SilenthillHolder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo.ExpulserInventory.*;
