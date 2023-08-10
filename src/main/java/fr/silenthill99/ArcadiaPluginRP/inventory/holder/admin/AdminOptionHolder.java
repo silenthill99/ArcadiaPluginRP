@@ -1,13 +1,13 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
+package fr.silenthill99.ArcadiaPluginRP.inventory.holder.admin;
 
 import fr.silenthill99.ArcadiaPluginRP.inventory.SilenthillHolder;
 import org.bukkit.OfflinePlayer;
 
-public class SanctionAdminHolder extends SilenthillHolder
+public class AdminOptionHolder extends SilenthillHolder
 {
     private final OfflinePlayer target;
 
-    public SanctionAdminHolder(OfflinePlayer target)
+    public AdminOptionHolder(OfflinePlayer target)
     {
         this.target = target;
     }

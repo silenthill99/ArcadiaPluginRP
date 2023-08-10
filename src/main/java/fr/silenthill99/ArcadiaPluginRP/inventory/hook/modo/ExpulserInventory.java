@@ -2,7 +2,10 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.ExpulserHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -39,6 +42,22 @@ public class ExpulserInventory extends AbstractInventory<ExpulserHolder>
     {
         OfflinePlayer target = holder.getTarget();
         Expulser expulser = holder.expulser.get(event.getSlot());
+        switch (current.getType())
+        {
+            case PAPER:
+            {
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "kick " + target.getName() + " " + expulser.getName());
+                break;
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     public enum Expulser

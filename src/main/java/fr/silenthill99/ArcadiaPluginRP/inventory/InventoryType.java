@@ -1,6 +1,7 @@
 package fr.silenthill99.ArcadiaPluginRP.inventory;
 
 import fr.silenthill99.ArcadiaPluginRP.inventory.hook.*;
+import fr.silenthill99.ArcadiaPluginRP.inventory.hook.admin.*;
 import fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo.*;
 
 import java.util.Arrays;
@@ -20,6 +21,7 @@ public enum InventoryType
     GRADE(new GradeInventory()),
     INVENTAIRE(new InventaireInventory()),
     MACDO(new MacDoInventory()),
+    OPTION(new OptionInventory()),
     PLAYER_OPTIONS(new PlayerOptionInventory()),
     PLAYER_ADMIN_MENU(new PlayerAdminInventory()),
     PLAYER_SANCTION_INVENTORY(new PlayerSanctionTypeInventory()),
@@ -27,6 +29,8 @@ public enum InventoryType
     POLICIER(new PolicierInventory()),
     RANK_UP(new RankUpInventory()),
     RANK_UP_SUPER(new RankUpSuperinventory()),
+    RECHERCHE(new RechercheInventory()),
+    RESEAUX(new ReseauxInventory()),
     SANCTION_ADMIN(new SanctionAdminInventory()),
     TELEPORTATION(new TeleportationInventory());
     private final AbstractInventory<?> inv;

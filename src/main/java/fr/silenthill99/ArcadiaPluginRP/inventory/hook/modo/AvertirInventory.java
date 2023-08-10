@@ -64,6 +64,11 @@ public class AvertirInventory extends AbstractInventory<AvertirHolder>
                         Bukkit.dispatchCommand(player, "warn " + target.getName() + " Serious RP Non respecté");
                         break;
                     }
+                    case CONDUITE_NO_RP:
+                    {
+                        Bukkit.dispatchCommand(player, "warn " + target.getName() + " Conduite non RolePlay");
+                        break;
+                    }
                     default:
                     {
                         Bukkit.dispatchCommand(player, "warn " + target.getName() + " " + warns.getName());
@@ -72,23 +77,6 @@ public class AvertirInventory extends AbstractInventory<AvertirHolder>
                 }
                 break;
             /*
-
-            case "§2Serious RP":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " Serious RP Non respecté");
-                break;
-            case "§2Conduite NoRP":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " Conduite non RolePlay");
-                break;
-            case "§2Métagaming":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " Métagaming");
-                break;
-            case "§2Hrp en RP":
-                player.closeInventory();
-                Bukkit.dispatchCommand(player, "warn " + target.getName() + " Hrp en RP");
-                break;
             case "§2Hrp en RP (vocal)":
                 player.closeInventory();
                 Bukkit.dispatchCommand(player, "warn " + target.getName() + " Hrp en RP vocal");

@@ -1,7 +1,7 @@
 package fr.silenthill99.ArcadiaPluginRP.inventory.holder;
 
 import fr.silenthill99.ArcadiaPluginRP.inventory.SilenthillHolder;
-import fr.silenthill99.ArcadiaPluginRP.inventory.hook.BanAdminInventory.*;
+import fr.silenthill99.ArcadiaPluginRP.inventory.hook.admin.BanAdminInventory.*;
 import org.bukkit.OfflinePlayer;
 
 import java.util.HashMap;

@@ -1,12 +1,14 @@
 package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
+import fr.silenthill99.ArcadiaPluginRP.Main;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.RankUpHolder;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -49,6 +51,98 @@ public class RankUpInventory extends AbstractInventory<RankUpHolder>
         inv.setItem(15, UnRank);
         player.openInventory(inv);
     }
+
+    @Override
+    public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, RankUpHolder holder)
+    {
+        OfflinePlayer target = holder.getTarget();
+        operateur op = holder.operateur.get(event.getSlot());
+        Grade grade = holder.gd.get(event.getSlot());
+        switch (current.getType())
+        {
+            case LIME_WOOL:
+            {
+                role(player, target, "moderateur", "Arcadia.moderation");
+                break;
+            }
+            case BLUE_WOOL:
+            {
+                role(player, target, "développeur", "Arcadia.developpeur");
+                break;
+            }
+            case LIGHT_BLUE_WOOL:
+            {
+                role(player, target, "administrateur", "Arcadia.administrateur");
+                break;
+            }
+            case ORANGE_WOOL:
+            {
+                role(player, target, "secretaire", "Arcadia.secretaire");
+                break;
+            }
+            case RED_DYE:
+            {
+                if (op.equals(operateur.METTRE_OP))
+                {
+                    if (target.isOp())
+                    {
+                        player.sendMessage(Main.getInstance().getConfig().getString("options.prefix").replace("&", "§") + " §c" + target.getName()+" est déjà opérateur du serveur !");
+                        return;
+                    }
+                    target.setOp(true);
+                    player.sendMessage(ChatColor.GREEN + target.getName() + " est désormais opérateur !");
+                }
+                else
+                {
+                    if (!target.isOp())
+                    {
+                        player.sendMessage(Main.getInstance().getConfig().getString("options.prefix").replace("&", "§") + " §c" + player.getName() + " n'est pas opérateur !");
+                        return;
+                    }
+                    target.setOp(false);
+                    player.sendMessage("§4" + target.getName() + " a perdu ses privilèges d'opérateur !");
+                }
+                break;
+            }
+            case PAPER:
+            {
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "lp user " + target.getName() + " permission clear");
+                Bukkit.dispatchCommand(player, "lp user " + target.getName() + " parent set default");
+                Bukkit.dispatchCommand(player, "vanish " + target.getName() + " off");
+                Bukkit.dispatchCommand(player, "fly " + target.getName() + " off");
+                Bukkit.dispatchCommand(player, "god " + target.getName() + " off");
+                if (!target.getPlayer().getGameMode().equals(GameMode.ADVENTURE))
+                    target.getPlayer().setGameMode(GameMode.ADVENTURE);
+                Bukkit.dispatchCommand(player, "kick " + target.getName() + " unrank");
+                break;
+            }
+            case BOOK:
+            {
+                if (grade.equals(Grade.JOUEUR))
+                    InventoryManager.openInventory(player, InventoryType.GRADE, target);
+                else
+                    InventoryManager.openInventory(player, InventoryType.RANK_UP_SUPER, target);
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    public void role(Player player, OfflinePlayer target, String grade, String permission)
+    {
+        player.closeInventory();
+        Bukkit.dispatchCommand(player, "lp user " + target.getName() + " parent set " + grade);
+        Bukkit.dispatchCommand(player, "list");
+        Bukkit.dispatchCommand(player, "lp user " + target.getName() + " permission clear");
+        Bukkit.dispatchCommand(player, "lp user " + target.getName() + " permission set " + permission);
+    }
+
     public enum operateur
     {
         METTRE_OP(14, ChatColor.YELLOW + "Mettre opérateur"),

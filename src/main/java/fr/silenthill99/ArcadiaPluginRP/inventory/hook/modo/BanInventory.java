@@ -2,6 +2,8 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.BanHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -66,6 +68,8 @@ public class BanInventory extends AbstractInventory<BanHolder>
                 }
                 break;
             }
+            case SUNFLOWER:
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
             default:
             {
                 break;

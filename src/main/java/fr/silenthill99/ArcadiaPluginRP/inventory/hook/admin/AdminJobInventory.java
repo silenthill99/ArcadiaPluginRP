@@ -1,10 +1,10 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
+package fr.silenthill99.ArcadiaPluginRP.inventory.hook.admin;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
-import fr.silenthill99.ArcadiaPluginRP.inventory.holder.AdminJobHolder;
+import fr.silenthill99.ArcadiaPluginRP.inventory.holder.admin.AdminJobHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -25,6 +25,7 @@ public class AdminJobInventory extends AbstractInventory<AdminJobHolder>
     {
         OfflinePlayer target = (OfflinePlayer) args[0];
         AdminJobHolder holder = new AdminJobHolder(target);
+
         Inventory inv = createInventory(holder, 18, "Set team " + target.getName());
         for (Metiers metiers : Metiers.values())
         {
@@ -39,6 +40,24 @@ public class AdminJobInventory extends AbstractInventory<AdminJobHolder>
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, AdminJobHolder holder) {
         OfflinePlayer target = holder.getTarget();
         Metiers metiers = holder.metiers.get(event.getSlot());
+
+        switch (current.getType())
+        {
+            case PAPER:
+            {
+                if (metiers.equals(Metiers.ACTUALISER))
+                {
+                    player.closeInventory();
+                    Bukkit.dispatchCommand(player, "list");
+                    break;
+                }
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+        }
     }
 
     public enum Metiers

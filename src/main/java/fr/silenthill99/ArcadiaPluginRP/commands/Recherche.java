@@ -1,15 +1,14 @@
 package fr.silenthill99.ArcadiaPluginRP.commands;
 
-import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.Main;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +18,7 @@ import java.util.Locale;
 public class  Recherche implements CommandExecutor, TabCompleter {
 
     ArrayList<String> arguments = new ArrayList<>();
-    ArrayList<Player> recherche = new ArrayList<>();
+    public static ArrayList<Player> recherche = new ArrayList<>();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
@@ -31,14 +30,7 @@ public class  Recherche implements CommandExecutor, TabCompleter {
         Player player = (Player) sender;
 
         if (args.length == 0 || args[0].equalsIgnoreCase("liste")) {
-            Inventory inv = Bukkit.createInventory(null, 54, "Avis de recherche");
-            int slot = 0;
-            for (Player players : recherche) {
-                ItemBuilder Tete = new ItemBuilder(Material.PLAYER_HEAD).setSkullOwner(players.getName()).setName(players.getName());
-                inv.setItem(slot, Tete.toItemStack());
-                slot += 1;
-            }
-            player.openInventory(inv);
+            InventoryManager.openInventory(player, InventoryType.RECHERCHE);
             return false;
         }
         if (args[0].equalsIgnoreCase("ajouter")) {
@@ -79,7 +71,7 @@ public class  Recherche implements CommandExecutor, TabCompleter {
             }
             return false;
         }
-        if (!args[0].equalsIgnoreCase("liste") && !args[0].equalsIgnoreCase("ajouter") && !args[0].equalsIgnoreCase("retirer")) {
+        if (!arguments.contains(args[0])) {
             player.sendMessage(Main.getInstance().getConfig().getString("options.prefix") + " §c\"" + args[0] + "§c\" n'est pas un argument valable !");
             return false;
         }

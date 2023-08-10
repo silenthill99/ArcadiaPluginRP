@@ -1,8 +1,11 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
+package fr.silenthill99.ArcadiaPluginRP.inventory.hook.admin;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.BanAdminHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -37,6 +40,22 @@ public class BanAdminInventory extends AbstractInventory<BanAdminHolder>
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, BanAdminHolder holder) {
         OfflinePlayer target = holder.getTarget();
         Bannir bannir = holder.bannir.get(event.getSlot());
+        switch (current.getType())
+        {
+            case PAPER:
+            {
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "ipban " + target.getName() + " " + bannir.getName());
+                break;
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     public enum Bannir

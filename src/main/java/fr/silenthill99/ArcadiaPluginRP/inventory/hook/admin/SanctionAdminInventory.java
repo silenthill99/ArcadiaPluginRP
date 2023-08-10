@@ -1,7 +1,9 @@
-package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
+package fr.silenthill99.ArcadiaPluginRP.inventory.hook.admin;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -33,5 +35,16 @@ public class SanctionAdminInventory extends AbstractInventory<SanctionAdminHolde
     @Override
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, SanctionAdminHolder holder) {
         OfflinePlayer target = holder.getTarget();
+        switch (current.getType())
+        {
+            case BOOK:
+            {
+                InventoryManager.openInventory(player, InventoryType.BAN_ADMIN, target);
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+            }
+        }
     }
 }

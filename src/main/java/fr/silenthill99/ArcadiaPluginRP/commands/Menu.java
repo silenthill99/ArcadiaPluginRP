@@ -1,6 +1,5 @@
 package fr.silenthill99.ArcadiaPluginRP.commands;
 
-import fr.silenthill99.ArcadiaPluginRP.Panel;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
 import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import org.bukkit.Bukkit;

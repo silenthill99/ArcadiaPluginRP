@@ -2,7 +2,10 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.ErreurStaffHolder;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -44,9 +47,24 @@ public class ErreurStaffInventory extends AbstractInventory<ErreurStaffHolder> {
     }
 
     @Override
-    public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, ErreurStaffHolder holder) {
+    public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, ErreurStaffHolder holder)
+    {
         OfflinePlayer target = holder.getTarget();
         ErreurStaff erreur_staff = holder.erreur_staff.get(event.getSlot());
+        switch (current.getType())
+        {
+            case PAPER:
+            {
+                player.closeInventory();
+                Bukkit.dispatchCommand(player, "warn " + target.getName() + " Erreur staff | " + erreur_staff.getName());
+                break;
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+        }
     }
 
     public enum ErreurStaff

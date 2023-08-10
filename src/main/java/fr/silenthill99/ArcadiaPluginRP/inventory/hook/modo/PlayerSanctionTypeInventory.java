@@ -2,6 +2,8 @@ package fr.silenthill99.ArcadiaPluginRP.inventory.hook.modo;
 
 import fr.silenthill99.ArcadiaPluginRP.ItemBuilder;
 import fr.silenthill99.ArcadiaPluginRP.inventory.AbstractInventory;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryManager;
+import fr.silenthill99.ArcadiaPluginRP.inventory.InventoryType;
 import fr.silenthill99.ArcadiaPluginRP.inventory.holder.modo.PlayerSanctionTypeHolder;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -38,5 +40,28 @@ public class PlayerSanctionTypeInventory extends AbstractInventory<PlayerSanctio
     @Override
     public void manageInventory(InventoryClickEvent event, ItemStack current, Player player, PlayerSanctionTypeHolder holder) {
         OfflinePlayer target = holder.getTarget();
+        switch (current.getType())
+        {
+            case GREEN_DYE:
+            {
+                InventoryManager.openInventory(player, InventoryType.AVERTIR, target);
+                break;
+            }
+            case RED_DYE:
+            {
+                InventoryManager.openInventory(player, InventoryType.BAN, target);
+                break;
+            }
+            case BLUE_DYE:
+            {
+                InventoryManager.openInventory(player, InventoryType.EXPULSER, target);
+                break;
+            }
+            case SUNFLOWER:
+            {
+                InventoryManager.openInventory(player, InventoryType.PLAYER_SANCTION_MENU, target);
+                break;
+            }
+        }
     }
 }
